@@ -5,6 +5,10 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.all
+    # デバッグ用ここから
+    p "標準出力にのみ反映"
+    logger.debug("標準出力とログファイルに記録される")
+    # デバッグ用ここまで
   end
 
   def new
@@ -13,6 +17,9 @@ class BlogsController < ApplicationController
 
   def create
     blog = Blog.new(blog_params)
+    # デバッグ用ここから
+    binding.pry
+    # デバッグ用ここまで
     blog.save
     redirect_to blog_path(blog.id)
   end
